@@ -26,7 +26,7 @@ class App extends Component {
                         <div>
                             <h4>Degree Distribution</h4>
                             <div style={lineStyle}>
-                                <DegreeType/>
+                                <DegreeType endpoint="api/ranking"/>
                             </div>
                         </div>
                     </div>

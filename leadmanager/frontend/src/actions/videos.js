@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-import { GET_VIDEOS } from "./types";
+import { DEGREE_DIST_QUERY } from "./types";
 
 // GET_VIDEOS
-export const getVideos = () => dispatch => {
+export const getDegreeDist = () => dispatch => {
     axios.get('/api/videos/')
         .then(res => {
             dispatch({
-                type: GET_VIDEOS,
+                type: DEGREE_DIST_QUERY,
                 payload: res.data
             });
         })

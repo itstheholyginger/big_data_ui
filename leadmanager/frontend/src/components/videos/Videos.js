@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types';
-import {GET_VIDEOS} from "../../actions/types";
-import {getVideos} from "../../actions/videos";
+import {DEGREE_DIST_QUERY} from "../../actions/types";
+import {getDegreeDist} from "../../actions/videos";
 
 
 export class Videos extends Component {
@@ -11,7 +11,7 @@ export class Videos extends Component {
     }
 
     componentDidMount() {
-        this.props.getVideos();
+        this.props.getDegreeDist();
     }
 
     render() {

@@ -1,38 +1,42 @@
 import React, {Component} from 'react';
-
+import PropTypes from 'prop-types';
+import {DEGREE_DIST_QUERY} from "../../actions/types";
+import {getDegreeDist} from "../../actions/videos";
 
 class DegreeType extends Component {
+    static propTypes = {
+        videos: PropTypes.array.isRequired,
+        endpoint: PropTypes.string.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
             degree: 'inRank',
             quantifier: 'max',
-            query: "",
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    setQuery = () => {
-        let order = "";
-        if (this.state.quantifier === "max") {
-            order = "DESC";
-        } else if (this.state.quantifier ==="min"){
-            order = "ASC";
-        }
-        this.setState(query, "SELECT * FROM RANKING ORDER BY " + this.state.degree + " " + order + " LIMIT 1;" );
-        alert(this.state.query);
-    }
-    handleChange(event) {
-        const name = event.target.name;
-        this.setState({name: event.target.value});
-    }
 
-    handleSubmit(event) {
+    handleChange = e => {
+        this.setState({[e.target.name]: e.target.value});
+    };
+
+    handleSubmit = e => {
         //alert("current selection is: " + this.state.value);
-        this.setQuery();
-    }
+        const {degree, quantifier} = this.state;
+        const video = {degree, quantifier}
+        const conf = {
+            method: "get",
+            body: JSON.stringify(video),
+            headers: new Headers({"Content-Type": "application/json"})
+        };
+        fetch(this.props.endpoint, conf).then(response => console.log(response))
+
+    };
 
     render() {
         return (
