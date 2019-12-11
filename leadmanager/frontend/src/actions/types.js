@@ -1,0 +1,1 @@
+export const DEGREE_DIST_QUERY = "DEGREE_DIST_QUERY";
